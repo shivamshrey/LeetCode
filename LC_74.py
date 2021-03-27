@@ -2,19 +2,17 @@
 
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        if not matrix or not matrix[0]:
-            return False
-        m, n = len(matrix), len(matrix[0])
+        row = len(matrix)
+        col = len(matrix[0])
+        i = 0
+        j = col - 1
         
-        level = -1
-        
-        for i in range(m):
-            if matrix[i][0] <= target:
-                level += 1
+        while i < row and j >= 0:
+            if target == matrix[i][j]:
+                return True
+            elif target > matrix[i][j]:
+                i += 1
             else:
-                break
+                j -= 1
         
-        if level == -1:
-            return False
-        
-        return target in matrix[level]
+        return False
