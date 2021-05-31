@@ -1,0 +1,3 @@
+## Tricks and Intuition behind some problems
+205. __Isomorphic Strings__ (Easy): Mark characters at the same index in both the strings point with the same number (`i` in this case). But before doing that, check if they are differently marked. If yes, then that means that this character is mapped to some other character already. So return `False`.
+448. __Find All Numbers Disappeared in an Array__ (Easy): For each number `nums[i]` in `nums`, we mark the number that `nums[i]` points to as negative. Then we filter the list, get all the indexes which points to a positive number.
