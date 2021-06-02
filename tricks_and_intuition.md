@@ -10,3 +10,4 @@
         So we promote the current element as it is only one modification. 
     * `nums[i - 2] <= nums[i]`, then we demote `nums[i - 1]`. Return `True` if `count <= 1`.
 * 703. __Kth Largest Element in a Stream__ (Easy): Add all elements to min heap. Pop `k` elements. This leaves you with `k` largest elements in the heap, with `heap[0]` being the kth largest. Now, before adding a new `val`, if `len(heap)` < `k`, then push `val` to heap else if `val` > `heap[0]`, then pop from heap and push `val` (i.e. `heapreplace()`). In both cases, the new `heap[0]` will be the kth largest element.
+* 705. __Design a HashSet__ (Easy): Use hashing function https://en.wikipedia.org/wiki/Hash_function#Multiplicative_hashing. Use separate chaining to handle collisions. Trick for faster modulo: `s % t = s & ((1 << t) - 1)`.
