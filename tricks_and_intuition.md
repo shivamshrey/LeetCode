@@ -24,4 +24,4 @@
 
         When the `queue` becomes empty, return -1.
 
-        In the `successors()` function, find all successors by incrementing and decrementing one value (wheel) at a time and adding them to `result`. Return this `result`.
+        In the `successors()` function, find all successors by incrementing and decrementing one value (wheel) at a time and adding them to `result`. Trick used when decrementing one value so that it doesn't overflow: `-1 % 10 = 9`. Return this `result`.
