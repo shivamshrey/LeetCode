@@ -2,19 +2,16 @@
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        # hashmap to store frequency of each number
-        hm = dict()
-        for i in range(len(nums)):
-            hm[nums[i]] = hm.get(nums[i], 0) + 1
+        # # O(1) time 
+        if k == len(nums):
+            return nums
         
-        # Store hm in heap as tuples (freq, num)
-        heap = [(freq, num) for num, freq in hm.items()]
-
-        # Get the k most frequent elements as (freq, num) pairs
-        k_most_frequent = heapq.nlargest(k, heap)
-        
-        # Extract num from (freq, num) pairs
-        result = [item[1] for item in k_most_frequent]
-        
-        return result
+        # 1. build hash map : character and how often it appears
+        # O(N) time
+        count = Counter(nums)   
+        # 2-3. build heap of top k frequent elements and
+        # convert it into an output array
+        # O(N log k) time
+        return heapq.nlargest(k, count.keys(), key=count.get) 
+    
     
