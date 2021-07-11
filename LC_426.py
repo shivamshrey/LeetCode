@@ -11,29 +11,32 @@ class Node:
 
 class Solution:
     def treeToDoublyList(self, root: 'Node') -> 'Node':
-        if not root:
-            return None
-        stack = []
-        cur = root
-        dummy = Node()
+        if root == None:
+            return
+        dummy = TreeNode()
         tail = dummy
         
+        # Perform inorder traversal
+        stack = []
+        cur = root
         while cur or stack:
             while cur:
                 stack.append(cur)
                 cur = cur.left
             cur = stack.pop()
             
-            new_node = Node(cur.val)
-            tail.right = new_node
-            new_node.left = tail
-            tail = new_node
+            # Build the linked list
+            tail.right = cur
+            cur.left = tail
+            tail = tail.right
             
             cur = cur.right
         
-        head = dummy.right
-        tail.right = head
-        head.left = tail
+        # make it circular
+        # by pointing head.left to tail
+        # and tail.right to head
+        tail.right = dummy.right
+        dummy.right.left = tail
         
-        return head
-    
+        return dummy.right
+        
