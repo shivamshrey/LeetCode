@@ -3,26 +3,21 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         result = []
-        new_start = newInterval[0]
-        new_end = newInterval[1]
+        prev = newInterval
         
-        for interval in intervals:
-            cur_start = interval[0]
-            cur_end = interval[1]
-            # if current is completely before newInterval
-            if cur_end < new_start:
-                result.append(interval)
-            # if newInterval is completely past current
-            elif new_end < cur_start:
-                result.append([new_start, new_end])
-                # make current as newInterval
-                new_start = cur_start
-                new_end = cur_end
+        for cur in intervals:
+            # if current is completely past previous interval
+            if prev[1] < cur[0]:
+                result.append(prev)
+                prev = cur
+            # if current is completely before previous interval
+            elif cur[1] < prev[0]:
+                result.append(cur)
             # if there's an overlap
             else:
-                new_start = min(cur_start, new_start)
-                new_end = max(cur_end, new_end)
+                prev[0] = min(prev[0], cur[0])
+                prev[1] = max(prev[1], cur[1])
         
-        result.append([new_start, new_end])
+        result.append(prev)
         
         return result
