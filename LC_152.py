@@ -1,4 +1,4 @@
-// 152. Maximum Product Subarray
+# 152. Maximum Product Subarray
 
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
