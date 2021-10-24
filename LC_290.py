@@ -10,11 +10,9 @@ class Solution:
         word_to_pattern = dict()
         
         for i in range(len(pattern)):
-            if pattern[i] in pattern_to_word and pattern_to_word[pattern[i]] != words[i]:
+            if pattern_to_word.get(pattern[i], None) != word_to_pattern.get(words[i], None):
                 return False
-            if words[i] in word_to_pattern and word_to_pattern[words[i]] != pattern[i]:
-                return False
-            pattern_to_word[pattern[i]] = words[i]
-            word_to_pattern[words[i]] = pattern[i]
+            pattern_to_word[pattern[i]] = i
+            word_to_pattern[words[i]] = i
             
         return True
