@@ -2,6 +2,7 @@
 
 class Solution {
     public int maximalSquare(char[][] matrix) {
+        // dp[i][j] = side length of max square that can be formed whose bottom right corner is (i, j) in the original matrix
         int[][] dp = new int[matrix.length + 1][matrix[0].length + 1];
         int maxLen = 0;
         for (int i = 1; i <= matrix.length; i++) {
