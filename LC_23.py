@@ -5,22 +5,28 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+# TC: O(n log k)
+# SC: O(n)
 class Solution:
-    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        ListNode.__lt__ = lambda x, y: True if x.val < y.val else False
+        
         dummy = ListNode()
         cur = dummy
         heap = []
-        ListNode.__lt__ = lambda x, y: True if x.val < y.val else False # key statement
-        for node in lists:
-            if node != None:
-                heap.append((node.val, node))
+        
+        for head in lists:
+            if head:
+                heap.append(head)
+        
         heapq.heapify(heap)
         
         while heap:
-            val, node = heapq.heappop(heap)
+            node = heapq.heappop(heap)
             cur.next = node
             if node.next:
-                heapq.heappush(heap, (node.next.val, node.next))
+                heapq.heappush(heap, node.next)
             cur = cur.next
+            
         return dummy.next
-    
