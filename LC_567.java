@@ -2,26 +2,29 @@
 
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        int s1Len = s1.length();
-        int s2Len = s2.length();
-        for (int i = 0; i < s2Len - s1Len + 1; i++)
-            if (areAnagrams(s1, s2.substring(i, i + s1Len)))
-                return true;
+        int[] counts = new int[26];
+        for (char c : s1.toCharArray())
+            counts[c - 'a']++;
+        
+        int start = 0, end = 0;
+        
+        while (end < s2.length()) {
+            // valid anagram
+            if (counts[s2.charAt(end) - 'a'] > 0) {
+                counts[s2.charAt(end) - 'a']--;
+                end++;
+                // window size becomes equal to s1.length()
+                if (end - start == s1.length())
+                    return true;
+            } else if (start == end) {
+                start++;
+                end++;
+            } else {
+                counts[s2.charAt(start) - 'a']++;
+                start++;
+            }
+        }
+        
         return false;
-    }
-    
-    public boolean areAnagrams(String s1, String s2) {
-        int[] count = new int[26];
-        
-        for (int i = 0; i < s1.length(); i++) {
-            count[s1.charAt(i) - 'a']++;
-            count[s2.charAt(i) - 'a']--;
-        }
-        
-        for (int i = 0; i < 26; i++) {
-            if (count[i] != 0)
-                return false;
-        }
-        return true;
     }
 }
