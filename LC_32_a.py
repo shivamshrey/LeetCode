@@ -1,6 +1,8 @@
 # 32. Longest Valid Parentheses
 # https://leetcode.com/problems/longest-valid-parentheses/
 
+# TC: O(N)
+# SC: O(N)
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
         stack = [-1]
