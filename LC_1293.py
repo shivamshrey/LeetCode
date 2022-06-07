@@ -1,8 +1,8 @@
 # 1293. Shortest Path in a Grid with Obstacles Elimination
 # https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
 
-# Time Complexity: O(N \cdot K)O(N⋅K)
-# Space Complexity: O(N \cdot K)O(N⋅K)
+# Time Complexity: O(N⋅K)
+# Space Complexity: O(N⋅K)
 class Solution:
     def shortestPath(self, grid: List[List[int]], k: int) -> int:
         rows, cols = len(grid), len(grid[0])
