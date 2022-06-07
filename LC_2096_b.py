@@ -17,7 +17,7 @@ class Solution:
                 path += 'R'
             return path
         
-        start_path, dest_path = "", ""
+        start_path, dest_path = [], []
         find_path(root, startValue, start_path)
         find_path(root, destValue, dest_path)
         

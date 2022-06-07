@@ -15,14 +15,14 @@ class Solution:
             return root if lca_left and lca_right else lca_left or lca_right
         
         lca_root = lca(root)
-        start_path, dest_path = [], []
+        start_path, dest_path = "", ""
         
         stack = [(lca_root, "")]
         while stack:    # do dfs, e.g. post order
             node, path = stack.pop()
             if node.val == startValue: start_path = path
-            elif node.val == destValue: end_path = path
+            elif node.val == destValue: dest_path = path
             if node.left: stack.append((node.left, path + 'L'))
             if node.right: stack.append((node.right, path + 'R'))
             
-        return "U" * len(start_path) + end_path
+        return "U" * len(start_path) + dest_path
