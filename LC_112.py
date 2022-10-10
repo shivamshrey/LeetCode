@@ -1,4 +1,5 @@
 # 112. Path Sum
+# https://leetcode.com/problems/path-sum/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -8,13 +9,8 @@
 #         self.right = right
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        if not root:
-            return False
-        
-        targetSum -= root.val
-        
-        if not root.left and not root.right and targetSum == 0:
-            return True
-        
-        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
+        if not root: return False
+        if not root.left and not root.right and targetSum == root.val: return True
+        return (self.hasPathSum(root.left, targetSum - root.val) or 
+                self.hasPathSum(root.right, targetSum - root.val))
     
