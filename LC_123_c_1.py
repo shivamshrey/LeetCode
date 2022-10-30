@@ -18,7 +18,7 @@ class Solution:
         # Base case: when transactions = 0
         for i in range(n):
             for buy_allowed in range(2):
-                nnext[buy_allowed][0]
+                nnext[buy_allowed][0] = 0
                 
         for i in range(n - 1, -1, -1):
             for buy_allowed in range(2):
