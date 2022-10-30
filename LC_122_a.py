@@ -22,6 +22,6 @@ class Solution:
             return profit
 
         n = len(prices)
-        dp = [[-1] * 2 for _ in range(n + 1)]
+        dp = [[-1] * 2 for _ in range(n)]
         return helper(0, 1)
     
